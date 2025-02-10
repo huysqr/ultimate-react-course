@@ -144,8 +144,72 @@ function getBook(id) {
 }
 
 
-//Destructuring
+//DESTRUCTURING + REST/SPREAD OPERATOR
 const book = getBook(2);
 const tiltle = book.title;
+const { title, author, genres , publicationDate, pages} = getBook(5);
 
 console.log(book.title + " by " + book.author);
+
+console.log(title + " by " + author + " in " + genres[0]);
+
+const [primaryGenre, secondaryGenre] = genres;
+console.log(primaryGenre + " and " + secondaryGenre);
+
+const updateBook = {
+  ...book,
+  //adding new properties
+  moviePublicationDate: "2023-01-01",
+  //overwriting existing properties
+  pages: 1210,
+
+}
+
+updateBook;
+
+
+
+//TEMPLATE LITERALS
+const sumary = `${title} is a book, written by ${author} in ${publicationDate.split("-")[0]}.`;
+console.log(sumary);
+
+
+//TERNARIES INSTEAD OF IF/ELSE STATEMENTS
+const pagesRange = pages > 1000 ? "over 1000 pages" : "less than 1000 pages";
+pagesRange;
+console.log(pagesRange);
+
+
+//ARROW FUNCTIONS
+function getYear(str){
+  return str.split("-")[0];
+};
+//or
+const getYearVer2 = (str) => str.split("-")[0];
+
+console.log(getYear(publicationDate));
+console.log(getYearVer2(publicationDate));
+
+//23. SHORT-CIRCUITING AND LOGICAL OPERATORS: &&, ||, ??
+
+//&& example
+console.log(true && "Hello");
+console.log(false && "Hello");
+//>> Toán tử && sẽ trả về giá trị đầu tiên nếu giá trị đó là false hoặc null, undefined, 0, NaN, hoặc một chuỗi rỗng. 
+// Nếu không, nó sẽ trả về giá trị thứ hai.
+
+// || example
+console.log(true || "Hello");
+console.log(false || "Hello");
+//>> Ngược lại với &&
+//Toán tử || trả về giá trị đầu tiên là true hoặc giá trị cuối cùng nếu tất cả các giá trị đều là false.
+
+const spanishTranslation = book.translations.spanish || "NOT TRANSLATION";
+console.log(spanishTranslation);
+
+console.log(book.reviews.librarything.reviewsCount || "no data");
+
+// ?? example
+const count = book.reviews.librarything.reviewsCount ?? "no data";
+count;
+//oán tử này trả về giá trị bên trái nếu giá trị đó không phải là null hoặc undefined. Nếu giá trị bên trái là null hoặc undefined, nó sẽ trả về giá trị bên phải.

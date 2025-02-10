@@ -142,3 +142,10 @@ function getBooks() {
 function getBook(id) {
   return data.find((d) => d.id === id);
 }
+
+
+//Destructuring
+const book = getBook(2);
+const tiltle = book.title;
+
+console.log(book.title + " by " + book.author);

@@ -212,4 +212,14 @@ console.log(book.reviews.librarything.reviewsCount || "no data");
 // ?? example
 const count = book.reviews.librarything.reviewsCount ?? "no data";
 count;
-//oán tử này trả về giá trị bên trái nếu giá trị đó không phải là null hoặc undefined. Nếu giá trị bên trái là null hoặc undefined, nó sẽ trả về giá trị bên phải.
+//Toán tử này trả về giá trị bên trái nếu giá trị đó không phải là null hoặc undefined.
+//  Nếu giá trị bên trái là null hoặc undefined, nó sẽ trả về giá trị bên phải.
+
+//24. OPTIONAL CHAINING
+const book1 = getBook(4);
+function getTotalReviewCount(book) {
+  return (
+    book.reviews.goodreads.ratingsCount + book.reviews.librarything.ratingsCount
+  );
+}
+getTotalReviewCount(book1); // 678160

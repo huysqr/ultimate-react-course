@@ -16,7 +16,7 @@ const data = [
     pages: 1216,
     translations: {
       spanish: "El señor de los anillos",
-      chinese: "魔戒",
+      chinese: "魔�??",
       french: "Le Seigneur des anneaux",
     },
     reviews: {
@@ -89,8 +89,9 @@ const data = [
     pages: 223,
     translations: {
       spanish: "Harry Potter y la piedra filosofal",
-      korean: "해리 포터와 마법사의 돌",
-      bengali: "হ্যারি পটার এন্ড দ্য ফিলোসফার্স স্টোন",
+      korean: "���?�� ������?�� ?��법사?�� ?��",
+      bengali:
+        "হ্যারি পটার এন্ড দ্য ফিলোসফার্স স্টোন",
       portuguese: "Harry Potter e a Pedra Filosofal",
     },
     reviews: {
@@ -115,7 +116,7 @@ const data = [
     hasMovieAdaptation: true,
     pages: 835,
     translations: {
-      korean: "왕좌의 게임",
+      korean: "?��?��의 ?��임",
       polish: "Gra o tron",
       portuguese: "A Guerra dos Tronos",
       spanish: "Juego de tronos",
@@ -143,11 +144,10 @@ function getBook(id) {
   return data.find((d) => d.id === id);
 }
 
-
 //DESTRUCTURING + REST/SPREAD OPERATOR
 const book = getBook(2);
 const tiltle = book.title;
-const { title, author, genres , publicationDate, pages} = getBook(5);
+const { title, author, genres, publicationDate, pages } = getBook(5);
 
 console.log(book.title + " by " + book.author);
 
@@ -162,28 +162,25 @@ const updateBook = {
   moviePublicationDate: "2023-01-01",
   //overwriting existing properties
   pages: 1210,
-
-}
+};
 
 updateBook;
 
-
-
 //TEMPLATE LITERALS
-const sumary = `${title} is a book, written by ${author} in ${publicationDate.split("-")[0]}.`;
+const sumary = `${title} is a book, written by ${author} in ${
+  publicationDate.split("-")[0]
+}.`;
 console.log(sumary);
-
 
 //TERNARIES INSTEAD OF IF/ELSE STATEMENTS
 const pagesRange = pages > 1000 ? "over 1000 pages" : "less than 1000 pages";
 pagesRange;
 console.log(pagesRange);
 
-
 //ARROW FUNCTIONS
-function getYear(str){
+function getYear(str) {
   return str.split("-")[0];
-};
+}
 //or
 const getYearVer2 = (str) => str.split("-")[0];
 
@@ -195,14 +192,15 @@ console.log(getYearVer2(publicationDate));
 //&& example
 console.log(true && "Hello");
 console.log(false && "Hello");
-//>> Toán tử && sẽ trả về giá trị đầu tiên nếu giá trị đó là false hoặc null, undefined, 0, NaN, hoặc một chuỗi rỗng. 
-// Nếu không, nó sẽ trả về giá trị thứ hai.
+//>> The && operator will return the first value if it is false, null, undefined, 0, NaN, or an empty string.
+// Otherwise, it will return the second value.
 
 // || example
 console.log(true || "Hello");
 console.log(false || "Hello");
-//>> Ngược lại với &&
-//Toán tử || trả về giá trị đầu tiên là true hoặc giá trị cuối cùng nếu tất cả các giá trị đều là false.
+
+// The && operator returns the first falsy value or the last value if none are falsy
+// The || operator returns the first truthy value or the last value if none are truthy
 
 const spanishTranslation = book.translations.spanish || "NOT TRANSLATION";
 console.log(spanishTranslation);
@@ -212,8 +210,8 @@ console.log(book.reviews.librarything.reviewsCount || "no data");
 // ?? example
 const count = book.reviews.librarything.reviewsCount ?? "no data";
 count;
-//Toán tử này trả về giá trị bên trái nếu giá trị đó không phải là null hoặc undefined.
-//  Nếu giá trị bên trái là null hoặc undefined, nó sẽ trả về giá trị bên phải.
+// This operator returns the left-hand value if it is not null or undefined.
+// If the left-hand value is null or undefined, it returns the right-hand value.
 
 //24. OPTIONAL CHAINING
 const book1 = getBook(4);

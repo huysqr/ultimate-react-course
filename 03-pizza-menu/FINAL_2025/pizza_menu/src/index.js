@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import './index.css';
+import "./index.css";
 
 const pizzaData = [
   {
@@ -47,19 +47,18 @@ const pizzaData = [
   },
 ];
 
-
 function App() {
   return (
-  <div className="container">
-    <Header />
-    <Menu />
-    <Footer />
-  </div>
+    <div className="container">
+      <Header />
+      <Menu />
+      <Footer />
+    </div>
   );
 }
 
 function Header() {
-  const style = {color:"red", fontSize: "48px", textTransform:"uppercase"};
+  const style = { color: "red", fontSize: "48px", textTransform: "uppercase" };
   return (
     <header className="header">
       <h1>Fast React Pizza Co.</h1>
@@ -68,46 +67,76 @@ function Header() {
 }
 
 function Menu() {
+  // const pizzaData = [];
+  const pizzas = pizzaData.length;
   return (
     <main className="menu">
-      <h2> 
-        Menu cua chung toi :
-      </h2>
-      <Pizza />
-      <Pizza />
-      <Pizza />
-      <Pizza />
+      <h2>Our menu :</h2>
+      {/* && OPERATOR */}
+      {/* {pizzas && (
+        <ul className="pizzas">
+          {pizzas.map((pizza) => (
+            <Pizza
+              key={pizza.name}
+              name={pizza.name}
+              ingredients={pizza.ingredients}
+              photoName={pizza.photoName}
+              price={pizza.price}
+            />
+          ))}
+        </ul>
+      )} */}
+
+      {/* use ? */}
+      {pizzas > 0 ? (
+        <>
+          <p>Authentic italian cuisine.</p>
+          <ul className="pizzas">
+            {pizzaData.map((pizza) => (
+              <Pizza pizza={pizza} />
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p>There is no pizza available.</p>
+      )}
     </main>
   );
 }
 
+function Pizza({ pizza }) {
+  // if (pizza.soldOut) return null;
+  return (
+    <div className="pizza">
+      <img src={pizza.photoName} alt="Pizza spinaci" />
+      <div>
+        <h3>{pizza.name}</h3>
+        <p>{pizza.ingredients}</p>
+        <span>{pizza.soldOut ? "SOLD OUT" : pizza.price + " VND"}</span>
+      </div>
+    </div>
+  );
+}
 function Footer() {
   const hour = new Date().getHours();
-  const isClosed = hour < 9 || hour >= 21;
+  const isOpen = hour > 9 || hour < 21;
   // if (isClosed) alert("Chung toi da dong cua.")
   //   else alert("Chung toi van dang mo cua.")
-  if (isClosed) {
-    return <footer className="footer">Bay gio la {new Date().toLocaleTimeString()} nen chung toi da dong cua.</footer>;
-  }
-  else {
-    return (
-      <footer className="footer">Bay gio la  {new Date().toLocaleTimeString()} - chung toi van dang mo cua.</footer>
-    );
-  }
-  
-}
-
-function Pizza(){
-  return <div>
-    <img src="pizzas/spinaci.jpg" alt="Pizza spinaci" />
-    <h3>Pizza Spinaci</h3>
-    <p>Tomato, mozarella, ham, aragula, and burrata cheese</p>
-  </div>;
+  return (
+    <footer className="footer">
+      {isOpen && (
+        <div className="order">
+          <p>Open until 21h. Come visit us or order online.</p>
+          <button className="btn">Order now</button>
+        </div>
+      )}
+    </footer>
+  );
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-<React.StrictMode>
-  <App />
-</React.StrictMode>
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
 );

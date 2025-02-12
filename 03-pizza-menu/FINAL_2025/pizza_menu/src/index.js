@@ -107,7 +107,7 @@ function Menu() {
 function Pizza({ pizza }) {
   // if (pizza.soldOut) return null;
   return (
-    <div className="pizza">
+    <div className={`pizza ${pizza.soldOut ? "sold-out" : ""}`}>
       <img src={pizza.photoName} alt="Pizza spinaci" />
       <div>
         <h3>{pizza.name}</h3>
